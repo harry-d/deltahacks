@@ -45,34 +45,36 @@
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 
-  <div class="container" margin-top="5%">
+  <div class="container">
 
     <!-- map image -->
-    <div class ="col-sm-8">
+    <div class ="col-sm-6" style="margin-top:5%;">
 
-      <div class = "row">
-          <a href="images/googleimage.jpg">
-            <img src="images/googleimage.jpg" width="40%" height="30%" >
-            <div class="caption">
-            </div>
-          </a>
-          <p>Address</p>
-      </div>
+      <div id="map" style="width:250px;height:250px;background:yellow"></div>
 
-      <div class = "row">
-        <img src="images/walkinimage.jpg" alt="photo of clinic here" width="40%">
-      </div>
+      <!-- map details -->
+      <script>
+        function myMap() {
+        var mapOptions = {
+            center: new google.maps.LatLng(51.5, -0.12),
+            zoom: 10,
+            mapTypeId: google.maps.MapTypeId.HYBRID
+        }
+        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+        }
+      </script>
+
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCU9Gg2r8qUmWGC2GO4MwB5JoY7gJjtWk&callback=myMap"></script>
+
+      <img src="images/walkinimage.jpg" alt="photo of clinic here" style="width:250px; height:250px; margin-top:5%">
 
     </div>
 
     <!-- clinic details -->
-    <div class = "col-sm-4">
+    <div class = "col-sm-6">
 
-      <div class = "row">
-        <p> Wait time: </p>
-        <p> Appointment time: </p>
-        <p>
-      </div>
+      <p> Wait time: </p>
+      <p> Appointment time: </p>
 
       <div class = "row">
 
