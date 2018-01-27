@@ -1,16 +1,17 @@
-const lib = require('lib');
+const lib = require('lib')({token:'m2RTVxgdm8r835hLA-l5VERydWYBPjF1FMzKuInbSwNYoA9b_LRO3ly9cQBR7C88'});
 /**
-* A basic Hello World function
-* @param {string} sender who is sending msg
-* @param {string} receiver who is receiving  msg
+* responding to a message from a patient
+* @param {string} smsService received message from patient. responding back to patient
+* @param {string} patient receiver of the automated response.
 * @param {string} message message
 * @returns {string}
 */
-module.exports = (sender = '12262860336', receiver = '6472701402', message = 'received message', context, callback) => {
+module.exports = (smsService = '12262123518', patient = '6472701402', message = 'received message', context, callback) => {
 
+  //creat message that sends to smsService to patient
   lib.messagebird.tel.sms({
-    originator:  receiver,
-    recipient: sender,
+    originator:  smsService,
+    recipient: patient,
     body: 'message received. sending message back'
   }, (err, result) => {
     if (err) {
