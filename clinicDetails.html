@@ -26,7 +26,9 @@
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
 
   <style>
-
+  html,body{
+    height:100%;
+  }
     body {
         font-family: 'Lato';font-size: 22px;
         /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f0f9ff+0,cbebff+47,a1dbff+100;Blue+3D+%2313 */
@@ -35,19 +37,7 @@
         background: -webkit-linear-gradient(top, #f0f9ff 0%,#cbebff 47%,#a1dbff 100%); /* Chrome10-25,Safari5.1-6 */
         background: linear-gradient(to bottom, #f0f9ff 0%,#cbebff 47%,#a1dbff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f9ff', endColorstr='#a1dbff',GradientType=0 ); /* IE6-9 */
-    }
-
-    .header{
-      margin-top: 20%;
-      width: 100%;
-      text-align: center;
-    }
-
-    .container{
-      width: 100%;
-      margin-top: 2%;
-      text-align: center;
-    }
+      }
 
   </style>
 
@@ -55,20 +45,42 @@
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 
+  <div class="container" margin-top="5%">
+
+    <!-- map image -->
+    <div class ="col-sm-8">
+
+      <div class = "row">
+          <a href="images/googleimage.jpg">
+            <img src="images/googleimage.jpg" width="40%" height="30%" >
+            <div class="caption">
+            </div>
+          </a>
+          <p>Address</p>
+      </div>
+
+      <div class = "row">
+        <img src="images/walkinimage.jpg" alt="photo of clinic here" width="40%">
+      </div>
+
+    </div>
+
+    <!-- clinic details -->
+    <div class = "col-sm-4">
+
+      <div class = "row">
+        <p> Wait time: </p>
+        <p> Appointment time: </p>
+        <p>
+      </div>
+
+      <div class = "row">
+
+      </div>
 
 
-
-
-  <!-- front page header -->
-  <div class="header animated fadeInDown">
-    <h1>Walk-in appointments without the wait!</h1>
+    </div>
   </div>
-
-  <div class ="container">
-    <button type="button" class="btn btn-primary btn-lg" href="/appointments.html" >Book now!</button>
-  </div>
-
-
 
 
   <!-- Footer -->
