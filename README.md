@@ -20,3 +20,7 @@ MedMessage frees time the time of patients that would have otherwise been spent 
 3. Text 'list' for a list of nearby clinics.
 4. Type 'book apt [apt #]' from the list of clinics returned.
 5. You can now review or cancel your booking.
+
+#### Alexa
+1. Same as the above expect input is in the form of voice commands instead of text!
+2. Reponses will be sent to the user via SMS
