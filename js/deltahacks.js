@@ -2,7 +2,6 @@ $( document ).ready(function() {
     console.log("ready");
 
     function createCard(data, index){
-
         var card =
             '<div id="card'
             +index+
@@ -30,12 +29,15 @@ $( document ).ready(function() {
 
         nim's map code!
 
+        */
+
+        var data;//object
+
         //loop to create cards
-        for (var i = 0; i < data.length(); i++){
+        for (var i = 0; i < data.length; i++){
             createCard(data[i],i);
         }
 
-        */
 
 
         $("#header-cover").css("transform", "translateY(-100%)");
@@ -54,6 +56,15 @@ $( document ).ready(function() {
         $("#info").css("transform", "translateY(100%)");
     });
 
+    $(".card").click(function(){
+        var id = $(this).attr('id');
+        id = parseInt(id.substring(4));
+        $("#info-h2").text(data[id]['location']);
+        $("#info-distance").text(data[id]['distance']);
+        $("#info-wait").text(data[id]['wait_time']);
+        $("#info-btn").text("Book earliest available time ("+data[id]['wait_time']+" from now)");
+        $("#info-btn-custom").text(data[id]['location']);
+    })
 
 
 
