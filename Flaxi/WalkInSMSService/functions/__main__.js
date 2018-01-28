@@ -8,6 +8,10 @@ function handleList(sender, receiver, message, callback) {
       return callback(err);
     }
 
+    if(aptData == null){
+      return callback(null, "You did not select a location.");
+    }
+
     lib['nim-wijetunga'].patient['@dev']({location: aptData.location, numResults: 2}, (err, results) => {
 
       var jsonData = JSON.parse(JSON.stringify(results, null, 2));
