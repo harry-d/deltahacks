@@ -1,32 +1,61 @@
 //
-let responseText = function (phoneNum, msg, data){
+let responseText = function (phoneNum, oldMsg, data){
 
   //msg
   var jsonData = JSON.parse(data);
 
-  var newMsg = "";
+  var msg = "";
 
   //1 -> list
-  if(msg == "1"){
+  if(oldMsg == "1"){
 
     for(var i = 0; i < jsonData.length; i++){
       var clinic = jsonData[i];
 
       var location = clinic.location;
-      var dest = clinic.dest;
+      var address = clinic.address_dest;
       var dist = clinic.dist;
-      var name = clinic['clinic name'];
+      var name = clinic.clinic_name;
+      var waitTime = clinic.wait_time;
+        var hours = Math.floor(waitTime / 60);
+        var minutes = waitTime - 60 * hours;
 
-      msg = msg + i + ". " + name + "\n";
-      msg = msg + "Location: " + location + "\n";
-      msg = msg + "Destination: " + dest + "\n";
-      msg = msg + "Distance: " + dist + "\n";
-      msg = msg + "---------------------------\n\n";
+      msg = msg + (i + 1) + ". " + name + "\n";
+      msg = msg + "Address: " +  address.substring(0, address.substring(0, address.lastIndexOf(',')).lastIndexOf(','))+ "\n";
+      msg = msg + "Distance: " + dist[0] + ".\n";
+      msg = msg + "Travel Time: About " + dist[1] + ".\n";
+      msg = msg + "Wait Time: ";
+      if(hours == 0 && minutes == 0){
+        msg = msg + "is now!";
+      }
+      else if(hours == 0 && minutes > 1){
+        msg = msg + minutes + " minutes. \n";
+      }
+      else if(hours == 0 && minutes == 1 ){
+        msg = msg + "1 minute. \n";
+      }
+      else if(minutes == 0 && hours > 1){
+        msg = msg + hours + " hours. \n";
+      }
+      else if(minutes == 0 && hours == 1){
+        msg = msg + "1 hour. \n";
+      }
+      else if(hours == 1){
+        msg = msg + hours + " hour and " + minutes + " minutes. \n";
+      }
+      else if(minutes == 1){
+        msg = msg + hours + " hours and " + minutes + " minute. \n";
+      }
+      else {
+        msg = msg + hours + " hours and " + minutes + " minutes. \n";
+      }
+
+      msg = msg + "----------------------------------------------\n\n";
     }
 
   }
   //2 -> book apt
-  else if(msg == "2"){
+  else if(oldMsg == "2"){
 
     /*
     book apt 2
@@ -38,13 +67,13 @@ let responseText = function (phoneNum, msg, data){
     */
   }
   //3 -> cancel
-  else if(msg == "3"){
+  else if(oldMsg == "3"){
 
     msg = "Cancelled booking";
 
   }
   //4 -> check wait time
-  else if(msg == "4"){
+  else if(oldMsg == "4"){
 
     var ranking = Math.random() * 40;
     var totalPatients = Math.random() * 40 + ranking;
@@ -54,7 +83,7 @@ let responseText = function (phoneNum, msg, data){
 
   }
   //5 -> help
-  else if(msg == "5"){
+  else if(oldMsg == "5"){
 
     msg = "Type 'list' to get list of appointments." + "\n"
     + "Type 'book apt <insert appointment number>' to book an appointment." + "\n"

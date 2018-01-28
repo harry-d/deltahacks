@@ -1,6 +1,6 @@
 {
   "name": "WalkInSMSService",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "",
   "author": "Flaxi <garland._zhang@hotmail.com>",
   "main": "functions/__main__.js",
