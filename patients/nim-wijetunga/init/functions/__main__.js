@@ -122,6 +122,7 @@ module.exports = async function getClinics (location = '3848 Bloomington Crescen
 		var shortest_dist = await getDist(loc,dest);
 		var wt = wait_time(places[key].name);
 		var address_dest = places[key].formatted_address;
+		//var icon = places[key].icon;
 		var temp = {location:loc, dest:dest, dist:shortest_dist, clinic_name:places[key].name, wait_time: wt, address_dest: address_dest, origin_dest: origin_dest};
 		nearest_clinics.push(temp);
 		if(index == numResults - 1) break;
