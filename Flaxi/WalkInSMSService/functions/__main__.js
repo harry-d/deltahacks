@@ -60,7 +60,7 @@ let responseText = function (phoneNum, oldMsg, data){
 
   }
   //2 -> book apt
-  else if(oldMsg.includes("book apt")){
+  else if(oldMsg.toLowerCase().includes("book apt")){
     msg = "";
 
     var c = parseInt(oldMsg.substring(oldMsg.length - 1) - 1);
@@ -110,13 +110,13 @@ let responseText = function (phoneNum, oldMsg, data){
 
   }
   //3 -> cancel
-  else if(oldMsg.includes("cancel")){
+  else if(oldMsg.toLowerCase().includes("cancel")){
 
     msg = "Your booking has been cancelled.";
 
   }
   //4 -> show apt
-  else if(oldMsg.includes("show apt")){
+  else if(oldMsg.toLowerCase().includes("show apt")){
 
     var ranking = Math.floor(Math.random() * 40) + 1;
     var totalPatients = Math.floor(Math.random() * 40) + ranking;
@@ -154,7 +154,7 @@ let responseText = function (phoneNum, oldMsg, data){
 
   }
   //5 -> help
-  else if(oldMsg.includes("help")){
+  else if(oldMsg.toLowerCase().includes("help")){
     msg = "Type 'list' to get list of nearby clinics and their wait times.\n\n"
     + "Type 'book apt <insert appointment number>' to book an appointment.\n\n"
     + "Type 'cancel' to cancel your appointment.\n\n"
