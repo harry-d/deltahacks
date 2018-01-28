@@ -16,25 +16,109 @@
     <link href="css/animate.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Catamaran:200,400" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/inputs.css" />
+    <link rel="stylesheet" type="text/css" href="css/deltahacks.css" />
 
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/easing.js"></script>
     <script src="js/wow.min.js"></script>
-    <script defer src="js/fontawesome-5/bundles/everything.min.js"></script>
+    <script src="js/font-awesome-5/bundles/everything.min.js"></script>
+
+    <script src="js/deltahacks.js"></script>
 
 </head>
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 
+    <header id="header-cover">
+        <div class="container">
+            <i class="fas fa-hospital fa-6x animated fadeInDown" style="animation-delay:0.3s"></i><br>
+            <h1 class="col-sm-8 col-sm-offset-2 animated fadeInDown">MedText</h1>
+            <div class="clearfix"></div>
+            <p class="animated fadeIn" style="animation-delay:0.5s">Walk-in appointments without the wait</p>
+            <div class="clearfix"></div>
+            <div id="location-input-wrapper" class="col-sm-12 animated fadeIn" style="animation-delay:0.5s">
+                <span class="input input--haruki">
+                    <input id="location-input" name="location" class="input__field input__field--haruki" type="text" />
+                    <label class="input__label input__label--haruki" for="input-1">
+                        <span class="input__label-content input__label-content--haruki">Location</span>
+                    </label>
+                </span>
+            </div>
+            <button id="header-btn" class="animated fadeIn" style="animation-delay:1s">Book now</button>
+
+        </div>
+    </header>
+
+    <section id="card-wrapper" class="content-section">
+
+        <div id="card1" class="card col-sm-8 col-sm-offset-2">
+            <div class="col-sm-4">
+                <img src="https://s3-ap-southeast-1.amazonaws.com/practo-fabric/ankura-children-s-hospitals-hyderabad-1468586652-5788da9ce9368.jpg" class="img-responsive img-rounded"/>
+            </div>
+
+            <div class="col-sm-8">
+                <h2>Location Name</h2>
+                <p>1.4 km</p>
+                <p>10 min wait</p>
+            </div>
+        </div>
+
+        <div class="card col-sm-8 col-sm-offset-2">
+            <div class="col-sm-4">
+                <img src="https://s3-ap-southeast-1.amazonaws.com/practo-fabric/ankura-children-s-hospitals-hyderabad-1468586652-5788da9ce9368.jpg" class="img-responsive img-rounded"/>
+            </div>
+
+            <div class="col-sm-8">
+                <h2>Location Name</h2>
+                <p>1.4 km</p>
+                <p>10 min wait</p>
+
+            </div>
+        </div>
+
+        <div class="card col-sm-8 col-sm-offset-2">
+            <div class="col-sm-4">
+                <img src="https://s3-ap-southeast-1.amazonaws.com/practo-fabric/ankura-children-s-hospitals-hyderabad-1468586652-5788da9ce9368.jpg" class="img-responsive img-rounded"/>
+            </div>
+
+            <div class="col-sm-8">
+                <h2>Location Name</h2>
+                <p>1.4 km</p>
+                <p>10 min wait</p>
+            </div>
+        </div>
+
+
+
+
+    </section>
+
+    <section id="info" class="content-section">
+        <p id="close">&nbsp;&nbsp;&nbsp;</p><i class="fas fa-times fa-3x"></i>
+        <div class="col-sm-10 col-sm-offset-1">
+            <div class="col-sm-5">
+                <img id="info-img" src="https://s3-ap-southeast-1.amazonaws.com/practo-fabric/ankura-children-s-hospitals-hyderabad-1468586652-5788da9ce9368.jpg" class="img-responsive img-rounded"/>
+            </div>
+
+            <div class="col-sm-7">
+                <h2 id="info-h2">Location Name</h2>
+                <p id="info-distance">1.4 km</p>
+                <p id="info-wait">10 min wait</p>
+                <p id="book-btn">book earliest available time (5 pm)</p>
+                <p id="book-btn-custom">book a custom time</p>
+                <input />
+            </div>
+        </div>
+    </section>
 
 
     <!-- Footer -->
-    <footer>
+    <!-- <footer>
         <div class="container">
             <p class="pull-left">Copyright &copy; Harry's DeltaHacks Project <?php echo date("Y") ?></p><a href="mailto:harold.dong@gmail.com?Subject=Contact%20Harry" class="pull-right">sample@email.com</a>
         </div>
-    </footer>
+    </footer> -->
 
     <script src="js/classie.js"></script>
     <script>
