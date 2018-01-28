@@ -1,3 +1,4 @@
+
 //
 let responseText = function (phoneNum, oldMsg, data){
 
@@ -7,7 +8,10 @@ let responseText = function (phoneNum, oldMsg, data){
   var msg = "";
 
   //1 -> list
-  if(oldMsg == "1"){
+
+  if(oldMsg.includes("list")){
+    msg = "";
+
 
     for(var i = 0; i < jsonData.length; i++){
       var clinic = jsonData[i];
@@ -51,49 +55,116 @@ let responseText = function (phoneNum, oldMsg, data){
       }
 
       msg = msg + "----------------------------------------------\n\n";
+
     }
 
   }
   //2 -> book apt
-  else if(oldMsg == "2"){
+  else if(oldMsg.includes("book apt")){
+    msg = "";
 
-    /*
-    book apt 2
+    var c = parseInt(oldMsg.substring(oldMsg.length - 1) - 1);
+    if(c < 0 || c > jsonData.length)
+    {
+      return "ERRORRRR";
+    }
+    var clinic = jsonData[c];
 
-    jsonData[2]
+    var address = clinic.address_dest;
+    var dist = clinic.dist;
+    var name = clinic.clinic_name;
+    var waitTime = clinic.wait_time;
+      var hours = Math.floor(waitTime / 60);
+      var minutes = waitTime - 60 * hours;
+    var ranking = Math.random() * 40;
+    var totalPatients = Math.floor(Math.random() * 40 + ranking) + 1;
 
+    msg += "Appt. at " + name + ".\n";
+    msg += "Location at: " + address.substring(0, address.substring(0, address.lastIndexOf(',')).lastIndexOf(',')) + ".\n";
+    msg = msg + "Wait Time: ";
+    if(hours == 0 && minutes == 0){
+      msg = msg + "is now!";
+    }
+    else if(hours == 0 && minutes > 1){
+      msg = msg + minutes + " minutes. \n";
+    }
+    else if(hours == 0 && minutes == 1 ){
+      msg = msg + "1 minute. \n";
+    }
+    else if(minutes == 0 && hours > 1){
+      msg = msg + hours + " hours. \n";
+    }
+    else if(minutes == 0 && hours == 1){
+      msg = msg + "1 hour. \n";
+    }
+    else if(hours == 1){
+      msg = msg + hours + " hour and " + minutes + " minutes. \n";
+    }
+    else if(minutes == 1){
+      msg = msg + hours + " hours and " + minutes + " minute. \n";
+    }
+    else {
+      msg = msg + hours + " hours and " + minutes + " minutes. \n";
+    }
+    msg += "Queued: " + totalPatients + " out of " + totalPatients + ".\n";
 
-
-    */
   }
   //3 -> cancel
-  else if(oldMsg == "3"){
+  else if(oldMsg.includes("cancel")){
 
-    msg = "Cancelled booking";
+    msg = "Your booking has been cancelled.";
 
   }
-  //4 -> check wait time
-  else if(oldMsg == "4"){
+  //4 -> show apt
+  else if(oldMsg.includes("show apt")){
 
-    var ranking = Math.random() * 40;
-    var totalPatients = Math.random() * 40 + ranking;
-    var waitTime = Math.random() * 40;
+    var ranking = Math.floor(Math.random() * 40) + 1;
+    var totalPatients = Math.floor(Math.random() * 40) + ranking;
+    var waitTime = Math.floor(Math.random() * 40);
+    var hours = Math.floor(waitTime / 60);
+    var minutes = waitTime - 60 * hours;
 
-    msg = "Total wait time is: " + waitTime + " You are queued: " + ranking + "/" + totalPatients;
+    msg = "Your current wait time is: ";
+
+    if(hours == 0 && minutes == 0){
+      msg = msg + "is now!";
+    }
+    else if(hours == 0 && minutes > 1){
+      msg = msg + minutes + " minutes. \n";
+    }
+    else if(hours == 0 && minutes == 1 ){
+      msg = msg + "1 minute. \n";
+    }
+    else if(minutes == 0 && hours > 1){
+      msg = msg + hours + " hours. \n";
+    }
+    else if(minutes == 0 && hours == 1){
+      msg = msg + "1 hour. \n";
+    }
+    else if(hours == 1){
+      msg = msg + hours + " hour and " + minutes + " minutes. \n";
+    }
+    else if(minutes == 1){
+      msg = msg + hours + " hours and " + minutes + " minute. \n";
+    }
+    else {
+      msg = msg + hours + " hours and " + minutes + " minutes. \n";
+    }
+     msg = msg + "You are queued: " + ranking + "/" + totalPatients + ".\n";
 
   }
   //5 -> help
-  else if(oldMsg == "5"){
-
-    msg = "Type 'list' to get list of appointments." + "\n"
-    + "Type 'book apt <insert appointment number>' to book an appointment." + "\n"
-    + "Type 'cancel' to cancel appointment." + "\n"
-    + "Type 'wait time' to get wait time and queue status" + "\n";
-
+  else if(oldMsg.includes("help")){
+    msg = "Type 'list' to get list of nearby clinics and their wait times.\n\n"
+    + "Type 'book apt <insert appointment number>' to book an appointment.\n\n"
+    + "Type 'cancel' to cancel your appointment.\n\n"
+    + "Type 'show apt' to see your booked appointment.\n\n"
   }
   //error message
-  else {
-    msg = "ERRORRRRRRRRRRRRRRRRRRRRR";
+  else{
+
+    msg = "Error: not a valid command. Type 'help' for a list of commands.";
+
   }
 
   return msg;
@@ -108,7 +179,7 @@ const lib = require('lib')({token:'m2RTVxgdm8r835hLA-l5VERydWYBPjF1FMzKuInbSwNYo
 * @param {string} message The contents of the SMS
 * @param {string} createdDatetime Datetime when the SMS was sent
 */
-module.exports = (sender = '6472701402', receiver = '12262123518', message = '1', createdDatetime = '', context, callback) => {
+module.exports = (sender = '6472701402', receiver = '12262123518', message = 'help', createdDatetime = '', context, callback) => {
 
   lib['nim-wijetunga'].patient['@dev']({location: 'Toronto', numResults: 2}, (err, results) => {
 
@@ -125,6 +196,5 @@ module.exports = (sender = '6472701402', receiver = '12262123518', message = '1'
     });
 
   });
-
 
 };
