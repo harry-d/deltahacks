@@ -98,7 +98,13 @@ function wait_time(str){
     return Math.abs(hash % 120);
 }
 
-async function getClinics(location, numResults){
+/**
+* Gets nearby clinics
+* @param {string} location A location
+* @param {integer} numResults Number of results
+* @returns {array}
+*/
+module.exports = async function getClinics (location = '3848 Bloomington Crescent', numResults = 2) {
 	var nearest_clinics = new Array();
 	var c = await getCoords(location);
 	var loc = {lat: c[0], lng: c[1]};
@@ -123,25 +129,4 @@ async function getClinics(location, numResults){
 	}
 
 	return nearest_clinics;
-
-}//returns closest (default 3) clinics and wait times, as well as optional number of results
-
-var nearest_clinics;
-
-getClinics(address,3).then(v => {
-
-	nearest_clinics = v; 
-	for(var key in nearest_clinics) console.log(nearest_clinics[key]);
-
-});
-
-
-
-
-
-
-
-
-
-
-
+}
