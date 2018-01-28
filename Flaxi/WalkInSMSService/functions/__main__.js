@@ -9,7 +9,7 @@ let responseText = function (phoneNum, oldMsg, data){
 
   //1 -> list
 
-  if(oldMsg.includes("list")){
+  if(oldMsg.toLowerCase().includes("list")){
     msg = "";
 
 
