@@ -17,12 +17,12 @@ function getCoords(address){
 		gmc.geocode({
 			address: address
 		}, function(err, response) {
-			console.log(err);
 			if (!err) {
   	//console.log(response.json.results[0].geometry.location.lat);
   	var obj = response.json.results[0].geometry.location;
   	coord.push(obj.lat);
   	coord.push(obj.lng);
+  	coord.push(response.json.results[0].formatted_address);
   	resolve(coord);
   }
 });
@@ -35,14 +35,12 @@ function getPlaces(loc,dist){
 	var near = [];
 
 	return new Promise(function(resolve, reject) {
-		console.log('SENDING?');
 		gmc.places({
 			query: 'hospital',
 			language: 'en',
 			location: loc,
 			radius: 1
 		}, function(err, response){
-			console.log(err);
 			if (err) {
 				return reject(err);
 			}
@@ -50,7 +48,6 @@ function getPlaces(loc,dist){
 			var i = 0;
 			var obj = response.json.results;
 			while(obj[i] != undefined){
-				console.log('inf?', i)
 				near.push(obj[i]);
 				i++;
 			}
@@ -102,42 +99,6 @@ function wait_time(str){
     return Math.abs(hash % 120);
 }
 
-/*async function getClinics (location = 'Toronto', numResults = 5) {
-	var nearest_clinics = new Array();
-	var c = await getCoords(location);
-	var loc = {lat: c[0], lng: c[1]};
-	var places = await getPlaces(loc,50000);
-	var index = 0;
-
-	for(var key in places){
-		var obj = places[key]
-		var lat = places[key].geometry.location.lat, long = places[key].geometry.location.lng;
-		var dest = {lat: lat, lng: long};
-		var shortest_dist = await getDist(loc,dest);
-		var wait_time = wait_time(places[key].name);
-		var temp = {location:loc, dest:dest, dist:shortest_dist, clinic_name:places[key].name, wait_time: wait_time};
-		nearest_clinics.push(temp);
-		if(index == numResults - 1) break;
-		index++;
-	}
-	return nearest_clinics;
-}*/
-
-// async function test(address){
-	
-// }
-
-// var nearest_clinics;
-
-// function get_clinics(address,numResults){
-// 	getClinics_async(address,numResults).then(v => {
-// 		for(var key in v){
-// 			console.log(v[key]);
-// 		}
-// 		return v;
-// 	});
-
-// }
 
 // var clinics = get_clinics(address,3);
 
@@ -147,30 +108,27 @@ function wait_time(str){
 * @param {integer} numResults Number of results
 * @returns {array}
 */
-module.exports = async function getClinics (location = 'Toronto', numResults = 2) {
+module.exports = async function getClinics (location = '3848 Bloomington Crescent', numResults = 2) {
 	var nearest_clinics = new Array();
-	console.log('A');
 	var c = await getCoords(location);
-	console.log('A1');
 	var loc = {lat: c[0], lng: c[1]};
 	var places = await getPlaces(loc,50000);
-		console.log('B');
+	var origin_dest = c[2];
 
 
 	var index = 0;
 
 	for(var key in places){
-			console.log('C');
 
 		var obj = places[key]
 		var lat = places[key].geometry.location.lat, long = places[key].geometry.location.lng;
 		var dest = {lat: lat, lng: long};
 		var shortest_dist = await getDist(loc,dest);
 		var wt = wait_time(places[key].name);
-		var temp = {location:loc, dest:dest, dist:shortest_dist, clinic_name:places[key].name, wait_time: wt};
+		var address_dest = places[key].formatted_address;
+		var temp = {location:loc, dest:dest, dist:shortest_dist, clinic_name:places[key].name, wait_time: wt, address_dest: address_dest, origin_dest: origin_dest};
 		nearest_clinics.push(temp);
 		if(index == numResults - 1) break;
-		console.log("here", index);
 		index++;
 	}
 
