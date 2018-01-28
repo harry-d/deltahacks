@@ -1,4 +1,3 @@
-//
 let responseText = function (phoneNum, msg, data){
 
   //msg
@@ -8,63 +7,87 @@ let responseText = function (phoneNum, msg, data){
 
   //1 -> list
   if(msg == "1"){
+    msg = "";
 
     for(var i = 0; i < jsonData.length; i++){
       var clinic = jsonData[i];
 
       var location = clinic.location;
-      var dest = clinic.dest;
       var dist = clinic.dist;
-      var name = clinic['clinic name'];
+      var name = clinic.clinic_name;
+      var waitTime = clinic.wait_time;
+      var hours = waitTime / 60;
+      var minutes = waitTime % 60;
 
-      msg = msg + i + ". " + name + "\n";
-      msg = msg + "Location: " + location + "\n";
-      msg = msg + "Destination: " + dest + "\n";
-      msg = msg + "Distance: " + dist + "\n";
-      msg = msg + "---------------------------\n\n";
+      msg += i + ". " + name + "\n";
+      msg += "Location: " + location + "\n";
+      msg += "Distance: " + dist + "\n";
+      msg += "---------------------------\n\n";
     }
 
   }
   //2 -> book apt
   else if(msg == "2"){
+    msg = "";
 
-    /*
-    book apt 2
+    var c = -1;
+    if(/*book apt == 1*/){
+      c = 0;
+    }else if(/*book apt == 2*/){
+      c = 1;
+    }else if(/*book apt == 3*/){
+      c = 2;
+    }else{
+      msg = "Error: not a valid clinic. Enter a clinic number between 1 and 3.";
+    }
 
-    jsonData[2]
+    var clinic = jsonData[c];
 
+    var location = clinic.location;
+    var dist = clinic.dist;
+    var name = clinic.clinic_name;
+    var waitTime = clinic.wait_time;
+    var hours = waitTime / 60;
+    var minutes = waitTime % 60;
+    var totalPatients = Math.random() * 40 + ranking;
 
+    msg += "Your appointment has been booked at " + name + ".\n";
+    msg += "The location is: " + location + ".\n";
+    msg += "Your current wait time is: " + hours + " hours and " + minutes + " minutes.\n";
+    msg += "You are queued: " + totalPatients + "/" + totalPatients + ".\n";
 
-    */
   }
   //3 -> cancel
   else if(msg == "3"){
 
-    msg = "Cancelled booking";
+    msg = "Your booking has been cancelled.";
 
   }
-  //4 -> check wait time
+  //4 -> check show apt
   else if(msg == "4"){
 
     var ranking = Math.random() * 40;
     var totalPatients = Math.random() * 40 + ranking;
     var waitTime = Math.random() * 40;
+    var hours = waitTime / 60;
+    var minutes = waitTime % 60;
 
-    msg = "Total wait time is: " + waitTime + " You are queued: " + ranking + "/" + totalPatients;
+    msg = "Your current wait time is: " + hours + " hours and " + minutes + " minutes. You are queued: " + ranking + "/" + totalPatients + ".\n";
 
   }
   //5 -> help
   else if(msg == "5"){
-
-    msg = "Type 'list' to get list of appointments." + "\n"
-    + "Type 'book apt <insert appointment number>' to book an appointment." + "\n"
-    + "Type 'cancel' to cancel appointment." + "\n"
-    + "Type 'wait time' to get wait time and queue status" + "\n";
+    msg = "Type 'list' to get list of nearby clinics and their wait times.\n"
+    + "Type 'book apt <insert appointment number>' to book an appointment.\n"
+    + "Type 'cancel' to cancel your appointment.\n"
+    + "Type 'show apt' to see your booked appointment.\n";
 
   }
   //error message
-  else {
-    msg = "ERRORRRRRRRRRRRRRRRRRRRRR";
+  else{
+
+    msg = "Error: not a valid command. Type "help" for a list of commands.";
+
   }
 
   return msg;
@@ -96,6 +119,5 @@ module.exports = (sender = '6472701402', receiver = '12262123518', message = '1'
     });
 
   });
-
 
 };
