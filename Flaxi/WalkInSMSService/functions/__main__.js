@@ -1,8 +1,8 @@
 //
 let responseText = function (phoneNum, msg){
 
-  //msg -> JSON Object stringified
-
+  //msg
+  var data = JSON.parse();
 
   //1 -> book msg
   if(msg == "1"){
@@ -39,14 +39,23 @@ const lib = require('lib')({token:'m2RTVxgdm8r835hLA-l5VERydWYBPjF1FMzKuInbSwNYo
 * @param {string} message The contents of the SMS
 * @param {string} createdDatetime Datetime when the SMS was sent
 */
-module.exports = async (sender = '6472701402', receiver = '12262123518', message = '2', createdDatetime = '', context) => {
+module.exports = (sender = '6472701402', receiver = '12262123518', message = '2', createdDatetime = '', context, callback) => {
 
-  let x = await lib.theirusername.servicename(args)
+  lib['nim-wijetunga'].patient['@dev']({location: 'San Francisco'}, (err, results) => {
 
-
-  let results = await lib.messagebird.tel.sms({
+    lib.messagebird.tel.sms({
       originator:  receiver,
       recipient: sender,
-      body: responseText(sender, message)
+      body: JSON.stringify(results, null, 2)
+    }, (err, result) => {
+      console.log(result);
+      if (err) {
+        return callback(err);
+      }
+      return callback(null, result);
     });
+
+  });
+
+
 };
