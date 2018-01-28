@@ -10,7 +10,7 @@ $( document ).ready(function() {
             '" class="img-responsive img-rounded"/></div><div class="col-sm-8"><h2>'
             +data['clinic_name']+
             '</h2><p>'
-            +data['distance']+
+            +data['distance'][0]+ ", "+data['distance'][1]+" away"
             '</p><p>'
             +data['wait_time']+
             '</p></div></div>';
@@ -60,7 +60,7 @@ $( document ).ready(function() {
         var id = $(this).attr('id');
         id = parseInt(id.substring(4));
         $("#info-h2").text(data[id]['location']);
-        $("#info-distance").text(data[id]['distance']);
+        $("#info-distance").text(data[id]['distance'][0]+ ", "+data[id]['distance'][1]+" away");
         $("#info-wait").text(data[id]['wait_time']);
         $("#info-btn").text("Book earliest available time ("+data[id]['wait_time']+" from now)");
         $("#info-btn-custom").text(data[id]['location']);
