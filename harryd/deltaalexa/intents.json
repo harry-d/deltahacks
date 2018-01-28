@@ -1,0 +1,59 @@
+{
+    "intents":[
+        {
+          "intent": "HandleList",
+          "slots": [
+            {
+              "name": "message",
+              "type": "AMAZON.LITERAL"
+            }
+          ]
+      },
+        {
+          "intent": "HandleBook",
+          "slots": [
+            {
+              "name": "message",
+              "type": "AMAZON.LITERAL"
+            }
+          ]
+      },
+        {
+          "intent": "HandleCancel",
+          "slots": [
+            {
+              "name": "message",
+              "type": "AMAZON.LITERAL"
+            }
+          ]
+      },
+        {
+          "intent": "HandleShow",
+          "slots": [
+            {
+              "name": "message",
+              "type": "AMAZON.LITERAL"
+            }
+          ]
+      },
+        {
+          "intent": "HandleHelp",
+          "slots": [
+            {
+              "name": "message",
+              "type": "AMAZON.LITERAL"
+            }
+          ]
+      },
+        {
+          "intent": "HandleLocation",
+          "slots": [
+            {
+              "name": "message",
+              "type": "AMAZON.LITERAL"
+            }
+          ]
+        }
+
+    ]
+}

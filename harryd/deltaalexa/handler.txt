@@ -1,0 +1,8 @@
+HandleList list
+HandleBook book appointment {slot value|message} using LITERAL
+HandleCancel cancel
+HandleShow show appointment
+HandleHelp help
+HandleLocation set address to {slot value|message} using LITERAL
+HandleLocation set address as {slot value|message} using LITERAL
+HandleLocation set location to {slot value|message} using LITERAL

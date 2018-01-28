@@ -1,0 +1,22 @@
+{
+  "name": "deltaalexa",
+  "version": "0.0.0",
+  "description": "",
+  "author": "harryd <hhdong@uwaterloo.ca>",
+  "main": "functions/__main__.js",
+  "dependencies": {
+    "lib": "^3.0.1"
+  },
+  "private": true,
+  "stdlib": {
+    "build": "faaslang",
+    "name": "harryd/deltaalexa",
+    "timeout": 10000,
+    "publish": true,
+    "personalize": {
+      "keys": [],
+      "user": []
+    },
+    "source": "alexa"
+  }
+}
