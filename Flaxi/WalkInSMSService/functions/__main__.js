@@ -1,3 +1,9 @@
+function text(phoneNum, msg){
+
+
+
+}
+
 const lib = require('lib')({token:'m2RTVxgdm8r835hLA-l5VERydWYBPjF1FMzKuInbSwNYoA9b_LRO3ly9cQBR7C88'});
 /**
 * @param {string} sender The phone number that sent the text to be handled
@@ -7,10 +13,9 @@ const lib = require('lib')({token:'m2RTVxgdm8r835hLA-l5VERydWYBPjF1FMzKuInbSwNYo
 */
 module.exports = (sender = '6472701402', receiver = '12262123518', message = 'received message', createdDatetime = '', context, callback) => {
 
-  //creat message that sends to smsService to patient
   lib.messagebird.tel.sms({
-    originator:  sender,
-    recipient: receiver,
+    originator:  receiver,
+    recipient: sender,
     body: message + " " + receiver + " " + sender
   }, (err, result) => {
     if (err) {
